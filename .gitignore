@@ -11,6 +11,9 @@
 *.zip
 !.gitkeep
 
+# config file
+reddit.ini
+
 # Specific directory
 neo4j/*
 
