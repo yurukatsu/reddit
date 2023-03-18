@@ -15,6 +15,7 @@ services:
       - 5000:5000
       - 5001:5001
     volumes:
+      - ./app:/root/${project_name}/app
       - ./poetry.lock:/root/${project_name}/poetry.lock:ro
       - ./poetry.toml:/root/${project_name}/poetry.toml:ro
       - ./pyproject.toml:/root/${project_name}/pyproject.toml:ro
