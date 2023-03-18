@@ -1,0 +1,35 @@
+version: '3'
+services:
+  python:
+    container_name: reddit-python-310
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+      - 8889:8889
+      - 8501:8501
+      - 8502:8502
+      - 8000:8000
+      - 8001:8001
+      - 5000:5000
+      - 5001:5001
+    volumes:
+      - ./poetry.lock:/root/${project_name}/poetry.lock:ro
+      - ./poetry.toml:/root/${project_name}/poetry.toml:ro
+      - ./pyproject.toml:/root/${project_name}/pyproject.toml:ro
+      - ~/.aws/config:/root/.aws/config:ro
+      - ~/.aws/credentials:/root/.aws/credentials:ro
+    env_file:
+      - .env
+    restart: always
+    tty: true
+    networks:
+      - base
+
+networks:
+  base:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.20.192/26
